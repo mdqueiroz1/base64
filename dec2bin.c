@@ -44,6 +44,32 @@ void base64ToDecimal(){
 	//Passar char b64 para decimal referente;
 	
 }
+void menu(){
+	
+	int menu
+	
+	printf("============================\n");
+	printf("===========BASE64===========\n");	
+	printf("============================\n");
+	printf("=   \t1-Encryption\t   =\n");
+	printf("=   \t2-Decryption\t   =\n");
+	printf("============================\n");
+	fflush(stdin);
+	printf("Option:");do{scanf("%d", &menu);}while(menu>2||menu<1);
+	system("cls");
+	
+	switch(menu){
+		case 1:{
+				printf("Encryption:\nTo encrypt the file, paste the text on the decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it ;)");
+			break;
+		}
+		case 2:{
+				printf("Decryption:\nTo dencrypt the file, paste the text on the encryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it ;)");
+			break;
+		}
+	}
+	
+}
 
 int main(){
 	
@@ -72,8 +98,8 @@ int main(){
 	return 0;
 }
 
-/*
-void b64(char *vet){
+
+void stringToBase64(char *vet){
 	int i;
 	
 	while(vet[i]!= EOF){
@@ -81,4 +107,37 @@ void b64(char *vet){
 	i++;
 	}
 }
-*/
+
+void base64ToString(char *vet){
+	int i;
+	while (vet[i]!= EOF){
+		
+		i++;
+	}
+}
+
+void openProg(int i){
+		FILE *f;
+	
+	char *ch,charCont;
+	int cont;
+		
+	if((f=fopen("bin2b64","a+")) == NULL){
+		printf("Falha ao abrir");
+		exit(1);
+	}else {
+		printf("Aberto com sucesso.\n\n");
+		sleep(2);
+		system("cls");
+	}
+	
+	while(charCont != EOF){
+		fscanf(f,"%c",&charCont);
+		cont++;
+	}
+	
+	ch = (char*) malloc(sizeof(char)*cont);
+	
+	fclose(f);
+}
+
