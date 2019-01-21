@@ -60,11 +60,13 @@ void menu(){
 	
 	switch(menu){
 		case 1:{
-				printf("Encryption:\nTo encrypt the file, paste the text on the decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it ;)");
+				printf("Encryption:\nTo encrypt the file, paste the text on the decryption file\n");
+				printf("save the file on the same folder and run the program.\n\nIgnore those steps if you aready did it");
 			break;
 		}
 		case 2:{
-				printf("Decryption:\nTo dencrypt the file, paste the text on the encryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it ;)");
+				printf("Decryption:\nTo dencrypt the file, paste the text on the encryption file");
+				printf("\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it");
 			break;
 		}
 	}
