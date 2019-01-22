@@ -4,8 +4,13 @@
 
 int main(){
 	
-
+	char ch;
+	int in;
 	
+	scanf("%c",&ch);
+	in=ch;
+	printf("%d", in);
+		
 	return 0;
 }
 
