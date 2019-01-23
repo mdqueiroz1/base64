@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+	int men;
+
 void base64ToBinary(int dec,int *bin,int cont){
 	
 	int i=0;
@@ -31,29 +33,32 @@ void asciiToBinary(int dec,int *bin,int cont){
 		
 		cont=cont/2;
 		i++;
-	}
-	
-	//send to binaryToBase64
+	}	
 }
-void base64ToDecimal(char ch){
-
-	if(ch>64&&ch<91){
-		ch=ch-65;
-	}
-	if(ch>96&&ch<122){
-		ch=ch-71;
-	}
-	if(ch>47&&ch<58){
-		ch=ch+4;
-	}
-	if(ch=='+'){
-		ch=43;
-	}
-	if(ch=='/'){
-		ch=47;
-	}
-
+int base64ToDecimal(char ch){
 	//Make char b64 to dec	
+	int dec;
+	
+	if(ch>64&&ch<91){
+		dec=ch-65;
+	}else{
+		if(ch>96&&ch<122){
+			dec=ch-71;
+		}else{
+			if(ch>47&&ch<58){
+				dec=ch+4;
+			}else{
+				if(ch=='+'){
+					dec=43;
+				}else{
+					if(ch=='/'){
+						dec=47;
+					}
+				}			
+			}
+		}
+	}
+	return dec;
 }
 
 int asciiToDecimal(char ch){
@@ -65,8 +70,6 @@ int asciiToDecimal(char ch){
 
 void menu(){
 	
-	int menu;
-	
 	printf("============================\n");
 	printf("===========BASE64===========\n");	
 	printf("============================\n");
@@ -77,15 +80,15 @@ void menu(){
 	printf("Option:");
 	
 	do{
-		scanf("%d", &menu);
-	}while(menu>2||menu<1);
+		scanf("%d", &men);
+	}while(men>2||men<1);
 	
 	system("cls");
 	
-	switch(menu){
+	switch(men){
 		case 1:{
 				printf("Encryption:\nTo encrypt the file, paste the text on decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it and take the text encrypted");
-				
+				asciiToDecimal();
 			break;
 		}
 		case 2:{
@@ -97,36 +100,11 @@ void menu(){
 	
 }
 
+
+
 int main(){
 	
-	
 	menu();
-		
+	
 	return 0;
 }
-
-void openProg(int i){
-		FILE *f;
-	
-	char *ch,charCont;
-	int cont;
-		
-	if((f=fopen("bin2b64","a+")) == NULL){
-		printf("Fail to open");
-		exit(1);
-	}else {
-		printf("Success.\n\n");
-		sleep(2);
-		system("cls");
-	}
-	
-	while(charCont != EOF){
-		fscanf(f,"%c",&charCont);
-		cont++;
-	}
-	
-	ch = (char*) malloc(sizeof(char)*cont);
-	
-	fclose(f);
-}
-

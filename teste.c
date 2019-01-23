@@ -4,13 +4,16 @@
 
 int main(){
 	
-	char ch;
-	int in;
+	FILE *f;
 	
-	scanf("%c",&ch);
-	in=ch;
-	printf("%d", in);
-		
+	if((f=fopen("escrita.txt","w")) != NULL){
+		exit(EXIT_ERROR)
+	}else {
+		printf("Success");
+		sleep(1);
+		system("cls");
+	}
+	
 	return 0;
 }
 
