@@ -1,41 +1,27 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-	int men;
 
-void base64ToBinary(int dec,int *bin,int cont){
+
+void toBinary(int dec,int cont,FILE *f){
+	
+	//base64 to bin cont=32;
+	//ascii to bin cont=128;
 	
 	int i=0;
-	cont = 32;
-	
+		
 	while(cont>=1){
 		if(dec>=cont){
 			dec=dec%cont;
-			bin[i]=1;
-		}else bin[i]=0;
+			fprintf(f,"1");
+		}else fprintf(f,"0");
 		
 		cont=cont/2;
 		i++;
 	}
-	//send to binaryToAscii
 }
 
-void asciiToBinary(int dec,int *bin,int cont){
-	
-	int i=0;
-	cont = 128;
-
-	while(cont>=1){
-		if(dec>=cont){
-			dec=dec%cont;
-			bin[i]=1;
-		}else bin[i]=0;
-		
-		cont=cont/2;
-		i++;
-	}	
-}
-int base64ToDecimal(char ch){
+int base64ToDecimal(char ch,FILE *f){
 	//Make char b64 to dec	
 	int dec;
 	
@@ -61,15 +47,53 @@ int base64ToDecimal(char ch){
 	return dec;
 }
 
-int asciiToDecimal(char ch){
+int asciiToDecimal(char ch,FILE *f){
 	int i;
 	i=ch;
 	
 	return i;	
 }
 
-void menu(){
+void menu(int men){
 	
+	switch(men){
+		case 1:{
+				printf("Encryption:\nTo encrypt the file, paste the text on decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it and take the text encrypted");
+				encrypt();
+			break;
+		}
+		case 2:{
+				printf("Decryption:\nTo dencrypt the file, paste the text on encryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it and take the file decrypted");
+				decrypt();
+			break;
+		}
+	}	
+}
+void encrypt(){
+	FILE *encryFile, *decryFile, *bin2b64File, *bbin2asciiFile, *ascii2dec, *dec2bin;
+	
+	if((encryFile=fopen("encryption.txt","w")) == NULL){
+		printf("Falha ao abrir");
+		exit(1);
+	}else {
+		printf("Aberto com sucesso.\n\n");
+		sleep(1);
+		system("cls");
+	}
+	
+	if((encryFile=fopen("encryption.txt","w")) == NULL){
+		printf("Falha ao abrir");
+		exit(1);
+	}else {
+		printf("Aberto com sucesso.\n\n");
+		sleep(1);
+		system("cls");
+	}
+	
+}
+
+int main(){
+		
 	printf("============================\n");
 	printf("===========BASE64===========\n");	
 	printf("============================\n");
@@ -79,32 +103,14 @@ void menu(){
 	fflush(stdin);
 	printf("Option:");
 	
-	do{
-		scanf("%d", &men);
-	}while(men>2||men<1);
+	int m;
 	
+	do{
+		scanf("%d", &m);
+	}while(m>2||m<1);
 	system("cls");
 	
-	switch(men){
-		case 1:{
-				printf("Encryption:\nTo encrypt the file, paste the text on decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it and take the text encrypted");
-				asciiToDecimal();
-			break;
-		}
-		case 2:{
-				printf("Decryption:\nTo dencrypt the file, paste the text on encryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you aready did it and take the file decrypted");
-					
-			break;
-		}
-	}
-	
-}
-
-
-
-int main(){
-	
-	menu();
+	menu(m);
 	
 	return 0;
 }
