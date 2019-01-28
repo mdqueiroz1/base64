@@ -112,6 +112,9 @@ void encrypt(){
 	}
 	if((encryFile=fopen("encryption.txt","w")) == NULL){
 		printf("Fail");
+	
+	if((decryFile=fopen("decryption.txt","w")) == NULL){
+		printf("Falha ao abrir");
 		exit(1);
 	}else {
 		printf("Success.\n\n");
