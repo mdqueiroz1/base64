@@ -81,7 +81,7 @@ void encrypt(){
 		system("cls");
 	}
 	
-	if((encryFile=fopen("encryption.txt","w")) == NULL){
+	if((decryFile=fopen("decryption.txt","w")) == NULL){
 		printf("Falha ao abrir");
 		exit(1);
 	}else {
