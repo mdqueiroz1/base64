@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
+#define EXIT_ERROR 1
+
 void toBinary(FILE *f,int dec,int cont){
 
 	//base64 to bin cont=32;
@@ -53,21 +55,6 @@ void asciiToDecimal(FILE *f,char ch){
 	fprintf(f,"%d ",i);
 }
 
-void menu(int men){
-
-	switch(men){
-		case 1:{
-				printf("Encryption:\nTo encrypt the file, paste the text on decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you already did it and take the text encrypted");
-				encrypt();
-			break;
-		}
-		case 2:{
-				printf("Decryption:\nTo decrypt the file, paste the text on encryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you already did it and take the file decrypted");
-				decrypt();
-			break;
-		}
-	}
-}
 void encrypt(){
 
 	FILE *encryFile, *decryFile, *binFile, *ascii2decFile;
@@ -75,20 +62,30 @@ void encrypt(){
 	int cont,decAscii;
 
 
+//-------------------------------------------------------------
+//			OPEN FILES
+//-------------------------------------------------------------
+	if((encryFile=fopen("encryption.txt","w")) == NULL){
+		printf("Fail");
+		exit(1);
+	}else {
+		printf("Success open encryFile.\n\n");
+		sleep(1);
+		system("cls");
+	}
 	if((decryFile=fopen("decryption.txt","r")) == NULL){
 		printf("Fail");
 		exit(1);
 	}else {
-		printf("Success.\n\n");
+		printf("Success open decryFile.\n\n");
 		sleep(1);
 		system("cls");
 	}
-
 	if((ascii2decFile=fopen("asciidec","w+")) == NULL){
 		printf("Fail");
 		exit(1);
 	}else {
-		printf("Success.\n\n");
+		printf("Success open .\n\n");
 		sleep(1);
 		system("cls");
 	}
@@ -100,7 +97,11 @@ void encrypt(){
 		sleep(1);
 		system("cls");
 	}
-
+//-------------------------------------------------------------
+//			END OPEN FILES
+//-------------------------------------------------------------
+	
+	/*
 	while(ch != EOF){//transform all of characters on decimal
 		ch=fgetc(decryFile);
 		ascii2dec(ascii2decFile, ch);
@@ -121,12 +122,38 @@ void encrypt(){
 		sleep(1);
 		system("cls");
 	}
+	*/
+//-------------------------------------------------------------
+//			CLOSE FILES
+//-------------------------------------------------------------
 	fclose(encryFile);
 	fclose(decryFile);
 	fclose(binFile);
 	fclose(ascii2decFile);
+//-------------------------------------------------------------
+//			END CLOSE FILES
+//-------------------------------------------------------------
 }
 
+void decrypt(){
+	exit(1);
+}
+
+void menu(int men){
+
+	switch(men){
+		case 1:{
+				printf("Encryption:\nTo encrypt the file, paste the text on decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you already did it and take the text encrypted");
+				encrypt();
+			break;
+		}
+		case 2:{
+				printf("Decryption:\nTo decrypt the file, paste the text on encryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you already did it and take the file decrypted");
+				decrypt();
+			break;
+		}
+	}
+}
 int main(){
 
 	printf("============================\n");
