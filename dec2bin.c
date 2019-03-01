@@ -48,9 +48,20 @@ int base64ToDecimal(char ch,FILE *f){
 	return dec;
 }
 
-void asciiToDecimal(FILE *f,char ch){
+void asciiToDecimal(char ch){
 	int i;
 	i=ch;
+
+//-------------------------------------------------------------
+//			OPEN FILES
+//-------------------------------------------------------------
+	FILE* f;
+	
+	if((f=fopen("ascii2dec","w")) == NULL){
+		printf("Fail");
+		exit(1);
+	}
+
 
 	fprintf(f,"%d ",i);
 }
@@ -156,14 +167,19 @@ void menu(int men){
 }
 int main(){
 
-	printf("============================\n");
-	printf("===========BASE64===========\n");
-	printf("============================\n");
-	printf("=   \t1-Encryption\t   =\n");
-	printf("=   \t2-Decryption\t   =\n");
-	printf("============================\n");
+	printf("  ==================================================\n");
+	printf("|| d8888b.  .d8b.  .d8888. d88888b     dD     j88D  ||\n");
+	printf("|| 88  `8D d8' `8b 88'  YP 88'        d8'    j8~88  ||\n");
+	printf("|| 88oooY' 88ooo88 `8bo.   88ooooo   d8'    j8' 88  ||\n");
+	printf("|| 88~~~b. 88~~~88   `Y8b. 88~~~~~  d8888b. V88888D ||\n");
+	printf("|| 88   8D 88   88 db   8D 88.      88' `8D     88  ||\n");
+	printf("|| Y8888P' YP   YP `8888Y' Y88888P  `8888P      VP  ||\n");
+	printf("  ==================================================\n");
+	printf("  1-Encryption\n");
+	printf("  2-Decryption\n");
+	printf("  ==================================================\n");
 	fflush(stdin);
-	printf("Option:");
+	printf("  Option:");
 
 	int m;
 
