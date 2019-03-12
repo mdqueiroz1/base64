@@ -52,18 +52,17 @@ void asciiToDecimal(char ch){
 	int i;
 	i=ch;
 
-//-------------------------------------------------------------
-//			OPEN FILES
-//-------------------------------------------------------------
 	FILE* f;
 	
-	if((f=fopen("ascii2dec","w")) == NULL){
+	if((f=fopen("ascii2dec.txt","w+")) == NULL){
 		printf("Fail");
 		exit(1);
 	}
 
 
 	fprintf(f,"%d ",i);
+	
+	fclose(f);
 }
 
 void encrypt(){
@@ -76,7 +75,7 @@ void encrypt(){
 //-------------------------------------------------------------
 //			OPEN FILES
 //-------------------------------------------------------------
-	if((encryFile=fopen("encryption.txt","w")) == NULL){
+	if((encryFile=fopen("encryption.txt","r")) == NULL){
 		printf("Fail");
 		exit(1);
 	}else {
@@ -84,6 +83,8 @@ void encrypt(){
 		sleep(1);
 		system("cls");
 	}
+	
+	/*
 	if((decryFile=fopen("decryption.txt","r")) == NULL){
 		printf("Fail");
 		exit(1);
@@ -92,6 +93,7 @@ void encrypt(){
 		sleep(1);
 		system("cls");
 	}
+	
 	if((ascii2decFile=fopen("asciidec","w+")) == NULL){
 		printf("Fail");
 		exit(1);
@@ -100,6 +102,7 @@ void encrypt(){
 		sleep(1);
 		system("cls");
 	}
+	
 	if((binFile=fopen("bin","w+")) == NULL){
 		printf("Fail");
 		exit(1);
@@ -108,16 +111,17 @@ void encrypt(){
 		sleep(1);
 		system("cls");
 	}
+	*/
 //-------------------------------------------------------------
 //			END OPEN FILES
 //-------------------------------------------------------------
 	
-	/*
+	
 	while(ch != EOF){//transform all of characters on decimal
-		ch=fgetc(decryFile);
-		ascii2dec(ascii2decFile, ch);
+		ch=fgetc(encryFile);
+		asciiToDecimal(ch);
 	}
-
+	/*
 	while(decAscii != EOF){//transform decimal ASCII on binary
 		fscanf(ascii2decFile,"%d", &decAscii);
 		toBinary(binFile,decAscii,128);
@@ -138,9 +142,11 @@ void encrypt(){
 //			CLOSE FILES
 //-------------------------------------------------------------
 	fclose(encryFile);
+	/*
 	fclose(decryFile);
 	fclose(binFile);
 	fclose(ascii2decFile);
+	*/
 //-------------------------------------------------------------
 //			END CLOSE FILES
 //-------------------------------------------------------------
@@ -154,12 +160,12 @@ void menu(int men){
 
 	switch(men){
 		case 1:{
-				printf("Encryption:\nTo encrypt the file, paste the text on decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you already did it and take the text encrypted");
+				printf("Encryption:\nTo encrypt the file, paste the text on decryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you already did it and take the text encrypted\n\n");
 				encrypt();
 			break;
 		}
 		case 2:{
-				printf("Decryption:\nTo decrypt the file, paste the text on encryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you already did it and take the file decrypted");
+				printf("Decryption:\nTo decrypt the file, paste the text on encryption file\nsave the file on the same folder and run the program.\n\nIgnore those steps if you already did it and take the file decrypted\n\n");
 				decrypt();
 			break;
 		}
