@@ -3,6 +3,7 @@
 #include<string.h>
 
 #define EXIT_ERROR 1
+#define EXIT_SUCCESS 0
 
 void toBinary(FILE *f,int dec,int cont){
 
